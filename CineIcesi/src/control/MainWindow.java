@@ -4,12 +4,11 @@ package control;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,7 +17,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-
+import javafx.stage.Stage;
+import main.Main;
 import model.User;
 
 public class MainWindow implements Initializable{
@@ -60,15 +60,34 @@ public class MainWindow implements Initializable{
    -----------------------------------------------Methods-----------------------------------------------
    */
     @FXML
-    void pressBTN(ActionEvent event) {
-    	if(event.getSource()== loginBTN) {
-    		if(passwordTF.getText().equals(genericUser.getPassword()) && idTF.getText().equals(genericUser.getUserID()) ) {
-    			
-    		}
-    	}
+    void login(ActionEvent event) throws IOException {
+		if(passwordTF.getText().equals(genericUser.getPassword()) && idTF.getText().equals(genericUser.getUserID()) ) {
+			
+		}
+    }
+    
+    @FXML
+    void register(ActionEvent event) throws IOException {
     	if(event.getSource() == registerBTN) {
-    		RegisterUser window = new RegisterUser();
-    		window.setVisible(true);
+    		FXMLLoader loader = new FXMLLoader(Main.class.getResource("../ui/RegisterUser.fxml"));
+    		loader.setController(new RegisterUser());
+    		
+    		Parent parent = (Parent) loader.load();
+    	
+    		Stage stage = new Stage();
+    		
+    		Scene scene = new Scene(parent);
+    		
+    		stage.setScene(scene);
+    		
+    		stage.show();
+    		try {
+    		Node source = (Node)event.getSource();
+    		Stage old = (Stage) source.getScene().getWindow();
+    		old.close();
+    		}catch(Exception e){
+    			e.printStackTrace();
+    		}
     	}
     }
     
