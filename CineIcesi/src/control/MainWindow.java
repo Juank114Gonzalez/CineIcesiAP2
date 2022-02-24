@@ -1,9 +1,13 @@
 package control;
 
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
+import model.UserData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,7 +28,7 @@ import model.User;
 public class MainWindow implements Initializable{
 	
 	//Attributes
-	private User genericUser = new User("Pepe","A00342422");
+	private User genericUser;
 	
 	//Anchor pane
 	@FXML
@@ -90,6 +94,7 @@ public class MainWindow implements Initializable{
     		}
     	}
     }
+    
     
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
