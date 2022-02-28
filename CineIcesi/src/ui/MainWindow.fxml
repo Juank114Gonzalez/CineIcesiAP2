@@ -21,9 +21,9 @@
          </children>
       </Pane>
       <TextField fx:id="idTF" layoutX="226.0" layoutY="188.0" promptText="ID" />
-      <Button fx:id="loginBTN" layoutX="271.0" layoutY="304.0" mnemonicParsing="false" onAction="#pressBTN" style="-fx-background-color: #009d60;" text="Ingresar" textFill="WHITE" />
+      <Button fx:id="loginBTN" layoutX="271.0" layoutY="304.0" mnemonicParsing="false" onAction="#login" style="-fx-background-color: #009d60;" text="Ingresar" textFill="WHITE" />
       <Label fx:id="loginLB" layoutX="259.0" layoutY="150.0" text="Inicio de Sesión" textFill="WHITE" />
       <PasswordField fx:id="passwordTF" layoutX="226.0" layoutY="252.0" promptText="Contraseña" />
-      <Button fx:id="registerBTN" layoutX="265.0" layoutY="337.0" mnemonicParsing="false" onAction="#pressBTN" style="-fx-background-color: #00579d;" text="Registarse" textFill="WHITE" />
+      <Button fx:id="registerBTN" layoutX="265.0" layoutY="337.0" mnemonicParsing="false" onAction="#register" style="-fx-background-color: #00579d;" text="Registarse" textFill="WHITE" />
    </children>
 </AnchorPane>
