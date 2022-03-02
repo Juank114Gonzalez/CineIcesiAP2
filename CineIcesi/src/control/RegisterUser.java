@@ -32,7 +32,7 @@ import model.UserData;
 public class RegisterUser implements Initializable{
 
 	//Attributes
-	public static String root = "data/data.temp";
+	public static String root = "data/data.txt";
 	
 	//Text Fields
 	@FXML
