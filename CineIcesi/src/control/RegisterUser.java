@@ -1,6 +1,7 @@
 package control;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -8,7 +9,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
+import com.google.gson.Gson;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -112,6 +113,27 @@ public class RegisterUser implements Initializable{
 	}
 
     
+    public void saveJSON() throws IOException {
+    	try {
+    	Gson gson = new Gson();
+    	String json = gson.toJson(UserData.data);
+    	System.out.println(json);
+    	File file = new File("data/data.json");
+    	FileOutputStream fos = new FileOutputStream(file);
+    	try {
+			fos.write(json.getBytes());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	fos.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    
     /**
      * This method saves data contained on ArrayList "UserData.data"
      */
@@ -189,6 +211,11 @@ public class RegisterUser implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		
+		try {
+			saveJSON();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

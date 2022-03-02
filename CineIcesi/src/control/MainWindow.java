@@ -6,6 +6,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.URL;
+import java.util.EventObject;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import model.UserData;
 import javafx.event.ActionEvent;
@@ -15,7 +17,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -65,6 +69,19 @@ public class MainWindow implements Initializable{
    */
     @FXML
     void login(ActionEvent event) throws IOException {
+    	if(checkUserExists(idTF.getText(),passwordTF.getText())) {
+    		launchIndex(event);
+    	}else {
+    		Alert alert = new Alert(Alert.AlertType.ERROR);
+    		alert.setTitle("Error al ingresar!");
+            alert.setContentText("El usuario no existe en la base de datos.\n\n"
+            					+"Para registrar haga click en registrar");
+            Optional<ButtonType> result = alert.showAndWait();
+    	}
+    	
+	}
+    
+    public void launchIndex(ActionEvent event) throws IOException {
     	FXMLLoader loader = new FXMLLoader(Main.class.getResource("../ui/IndexWindow.fxml"));
 		loader.setController(new IndexWindow());
 		
@@ -84,7 +101,19 @@ public class MainWindow implements Initializable{
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-	}
+    }
+    
+    public boolean checkUserExists(String id, String pass) {
+    	boolean out = false;
+    	for(User user : UserData.data) {
+    		if(user.getUserID().equals(id) && user.getPassword().equals(pass)) {
+    			out= true;
+    			break;
+    			
+    		}
+    	}
+    	return out;
+    }
     
     @FXML
     void register(ActionEvent event) throws IOException {
