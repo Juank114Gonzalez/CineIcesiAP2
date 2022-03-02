@@ -1,6 +1,7 @@
 package control;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -9,6 +10,11 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import com.google.gson.Gson;
+
+import exceptions.EmptyFieldsException;
+import exceptions.ExistingUserException;
+import exceptions.SpaceCharactersException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,23 +38,23 @@ import model.UserData;
 public class RegisterUser implements Initializable{
 
 	//Attributes
-	public static String root = "C:\\Users\\gabri\\eclipse-workspace\\CineIcesi\\data/jbc.temp"; //Preguntarle a Domi :3
+	public static String root = "data/data.txt";
 	
 	//Text Fields
 	@FXML
     private PasswordField confirmPasswordTF;
-
     @FXML
     private TextField idTF;
     
     @FXML
     private TextField nameRegisterTF;
-
     @FXML
     private PasswordField passwordTF;
     
     
     //Buttons
+    @FXML
+    private Button back_BTN;
     @FXML
     private Button registerBTN;
 
@@ -61,6 +67,11 @@ public class RegisterUser implements Initializable{
     //Images
     @FXML
     private ImageView logoIMG;
+    @FXML
+    private ImageView bgIMG;
+    @FXML
+    private ImageView bgIMG2;
+
 
     
     //Anchor pane
@@ -69,28 +80,23 @@ public class RegisterUser implements Initializable{
 
     
 
+    /**
+     * This method registers an user when the Button called "registerBTN" has been pressed
+     * @param event, event getter
+     */
     @FXML
-    void registerUser(ActionEvent event) {
+    void registerUser(ActionEvent event) throws EmptyFieldsException, ExistingUserException, SpaceCharactersException {
     	boolean validReg = true;
     	User userTemp = new User(nameRegisterTF.getText(),idTF.getText(),passwordTF.getText());
     	if(nameRegisterTF.getText().equals("") || idTF.getText().equals("") || passwordTF.getText().equals("")) {
-			Alert alert = new Alert(Alert.AlertType.ERROR);
+			new EmptyFieldsException();
 			validReg = false;
-    		alert.setTitle("Error al añadir!");
-            alert.setContentText("Ha ocurido un error al momento de añadir al usuario");
-            Optional<ButtonType> result = alert.showAndWait();
-		}else if (UserData.data.contains(userTemp)) {
+		}else if (checkUserExists(idTF.getText())) {
 			validReg = false;
-			Alert alert = new Alert(Alert.AlertType.WARNING);
-    		alert.setTitle("Usuario Existente!");
-            alert.setContentText("Está intentando añadir un usuario existente");
-            Optional<ButtonType> result = alert.showAndWait();
+			new ExistingUserException();
 		}else if (detectSpaces( idTF.getText() ) || detectSpaces( passwordTF.getText() )){
 			validReg = false;
-			Alert alert = new Alert(Alert.AlertType.WARNING);
-    		alert.setTitle("Campos inválidos!");
-            alert.setContentText("Ingresó un espacio en alguno de los campos (ID, PASSWORD)");
-            Optional<ButtonType> result = alert.showAndWait();
+			new SpaceCharactersException();
 		}
     	
     	if(!validReg) {
@@ -107,6 +113,47 @@ public class RegisterUser implements Initializable{
     		}
 	}
 
+    /**
+     * This method checks if any user has the id entered as parameter
+     * @param id, String, id of the user
+     * @return out, boolean, true if there is any user 
+     */
+    public boolean checkUserExists(String id) {
+    	boolean out = false;
+    	for(User user : UserData.data) {
+    		if(user.getUserID().equals(id)) {
+    			out= true;
+    			break;
+    			
+    		}
+    	}
+    	return out;
+    }
+    
+    public void saveJSON() throws IOException {
+    	try {
+    	Gson gson = new Gson();
+    	String json = gson.toJson(UserData.data);
+    	System.out.println(json);
+    	File file = new File("data/data.json");
+    	FileOutputStream fos = new FileOutputStream(file);
+    	try {
+			fos.write(json.getBytes());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	fos.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    
+    /**
+     * This method saves data contained on ArrayList "UserData.data"
+     */
     public void saveAsJavaByteCode() {
     	try {
     		ArrayList<User> userList = UserData.data;
@@ -122,7 +169,10 @@ public class RegisterUser implements Initializable{
     	
     
     }
-    
+    /**
+     * This method opens the login window after registering an User successfully
+     * @param event, event getter
+     */
     public void openLoginAgain(ActionEvent event) {
     	 try {
  			FXMLLoader loader = new FXMLLoader(Main.class.getResource("../ui/MainWindow.fxml"));
@@ -178,6 +228,11 @@ public class RegisterUser implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		
+		try {
+			saveJSON();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

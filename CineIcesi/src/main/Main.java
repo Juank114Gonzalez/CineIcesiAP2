@@ -2,55 +2,54 @@ package main;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-
 import control.RegisterUser;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.CineIcesiController;
 import model.User;
 import model.UserData;
 
 public class Main extends Application{
 	
-	public static UserData pene;
+	private CineIcesiController systemOF;
 	
-	public static void main(String[] args) {
-		//saveAsJavaByteCode();
-		if(UserData.data.size() > 0) {
-			loadData();
-		}
-		launch(args);
+	public Main() {
+		systemOF = new CineIcesiController();		
 	}
 	
-	public static boolean saveAsJavaByteCode() {
-    	boolean out = false;
-    	try {
-    		UserData.data.add(new User("default", "default", "default"));
-    		ArrayList<User> defaultList = UserData.data;
-    		File ref = new File(RegisterUser.root);
-	    	FileOutputStream fos = new FileOutputStream(ref);
-	    	ObjectOutputStream oos = new ObjectOutputStream(fos);
-	    	oos.writeObject(defaultList);
-	    	oos.close();
-	    	out = true;
-		}catch (IOException e) {
-			e.printStackTrace();
-			out = false;
+	public static void main(String[] args) {
+		Main ppal= new Main();
+		
+		if(fileExists()) {
+			loadData();
 		}
-    	
-    	return out;
-    }
-	
+		
+		launch(args);
+		
+	}
 	
 	/**
-	 * Metodo encargado de cargar la información serializada en la variable estática UserData.data para su posterior uso en ejecucion
+	 * This method confirms if the file named "data" exists
+	 * @return out, true if the data file exists
+	 */
+	public static boolean fileExists(){
+		boolean out = false;
+		File aux = new File("data/data.txt");
+		if(aux.exists()) {
+			out = true;
+		}	
+		return out;
+		
+	}
+	
+	/**
+	 * This Method is responsible for loading the serialized information in the static variable UserData.data for later use in execution
 	 */
 	public static void loadData() {
 		
@@ -67,6 +66,7 @@ public class Main extends Application{
 				e.printStackTrace();
 			}
 	    }
+	
 	
 	@Override
 	public void start(Stage primaryStage){

@@ -8,22 +8,45 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainAP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #00579d;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.MainWindow">
+<AnchorPane fx:id="mainAP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #00579d;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.MainWindow">
    <children>
-      <Pane layoutX="201.0" layoutY="57.0" prefHeight="68.0" prefWidth="198.0">
-         <children>
-            <ImageView fx:id="logoIMG" fitHeight="62.0" fitWidth="199.0" nodeOrientation="INHERIT">
-               <image>
-                  <Image url="@../../resource/LogoICESI_transparente_Blanco.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
-      <TextField fx:id="idTF" layoutX="226.0" layoutY="188.0" promptText="ID" />
-      <Button fx:id="loginBTN" layoutX="271.0" layoutY="304.0" mnemonicParsing="false" onAction="#login" style="-fx-background-color: #009d60;" text="Ingresar" textFill="WHITE" />
-      <Label fx:id="loginLB" layoutX="259.0" layoutY="150.0" text="Inicio de Sesión" textFill="WHITE" />
-      <PasswordField fx:id="passwordTF" layoutX="226.0" layoutY="252.0" promptText="Contraseña" />
-      <Button fx:id="registerBTN" layoutX="265.0" layoutY="337.0" mnemonicParsing="false" onAction="#register" style="-fx-background-color: #00579d;" text="Registarse" textFill="WHITE" />
+      <ImageView fx:id="bgIMG" fitHeight="720.0" fitWidth="1280.0">
+         <image>
+            <Image url="@../../resource/Fondo.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="720.0" fitWidth="1286.0" opacity="0.5">
+         <image>
+            <Image url="@../../resource/blackBG.png" />
+         </image>
+      </ImageView>
+      <Pane layoutX="201.0" layoutY="57.0" prefHeight="68.0" prefWidth="198.0" />
+      <TextField fx:id="idTF" layoutX="476.0" layoutY="327.0" promptText="ID">
+         <font>
+            <Font size="24.0" />
+         </font></TextField>
+      <Button fx:id="loginBTN" layoutX="566.0" layoutY="506.0" mnemonicParsing="false" onAction="#login" style="-fx-background-color: #009d60;" text="Ingresar" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font></Button>
+      <Label fx:id="loginLB" layoutX="542.0" layoutY="272.0" text="Inicio de Sesión" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
+      <PasswordField fx:id="passwordTF" layoutX="476.0" layoutY="412.0" promptText="Contraseña">
+         <font>
+            <Font size="24.0" />
+         </font></PasswordField>
+      <Button fx:id="registerBTN" layoutX="555.0" layoutY="574.0" mnemonicParsing="false" onAction="#register" style="-fx-background-color: #00579d;" text="Registarse" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font></Button>
+      <ImageView fx:id="logoIMG" fitHeight="124.0" fitWidth="398.0" layoutX="426.0" layoutY="113.0" nodeOrientation="INHERIT">
+         <image>
+            <Image url="@../../resource/LogoICESI_transparente_Blanco.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -1,8 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<AnchorPane fx:id="mainAP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #00579d;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="bgIMG" fitHeight="720.0" fitWidth="1280.0">
+         <image>
+            <Image url="@../../resource/Fondo.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="720.0" fitWidth="1286.0" opacity="0.5">
+         <image>
+            <Image url="@../../resource/blackBG.png" />
+         </image>
+      </ImageView>
+      <SplitPane layoutX="270.0" layoutY="96.0" orientation="VERTICAL" prefHeight="264.0" prefWidth="261.0" style="-fx-background-color: #3E5C76; -fx-background-radius: 25;">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="274.0" prefWidth="269.0">
+               <children>
+                  <Label alignment="CENTER" layoutY="211.0" prefHeight="51.0" prefWidth="258.0" text="REGISTRAR FUNCIÓN" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="cineIMG" fitHeight="173.0" fitWidth="200.0" layoutX="37.0" layoutY="14.0">
+                     <image>
+                        <Image url="@../../resource/CinemaIcon.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="registerShowBTN" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#openRegisterShowWindow" opacity="0.0" prefHeight="262.0" prefWidth="261.0" style="-fx-background-color: #009d60;" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+      <SplitPane layoutX="734.0" layoutY="96.0" orientation="VERTICAL" prefHeight="264.0" prefWidth="261.0" style="-fx-background-color: #748CAB; -fx-background-radius: 25;">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="274.0" prefWidth="269.0">
+               <children>
+                  <Label alignment="CENTER" layoutY="211.0" prefHeight="51.0" prefWidth="258.0" text="REGISTRAR USUARIO" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="userIMG" fitHeight="200.0" fitWidth="200.0" layoutX="37.0" layoutY="10.0">
+                     <image>
+                        <Image url="@../../resource/UserIcon.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="registerUserBTN" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#openRegisterUserWindow" opacity="0.0" prefHeight="262.0" prefWidth="261.0" style="-fx-background-color: #009d60;" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+      <SplitPane layoutX="510.0" layoutY="399.0" orientation="VERTICAL" prefHeight="264.0" prefWidth="261.0" style="-fx-background-color: #F0EBD8; -fx-background-radius: 25;">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="274.0" prefWidth="269.0">
+               <children>
+                  <ImageView fx:id="roomIMG" fitHeight="200.0" fitWidth="200.0" layoutX="34.0" layoutY="10.0">
+                     <image>
+                        <Image url="@../../resource/PopCornIcon.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" layoutY="211.0" prefHeight="51.0" prefWidth="258.0" text="ADMINISTRAR SALAS">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="administrateRoomsBTN" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#openRoomAdministrationWindow" opacity="0.0" prefHeight="262.0" prefWidth="261.0" style="-fx-background-color: #009d60;" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
 </AnchorPane>
-
