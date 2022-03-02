@@ -65,10 +65,26 @@ public class MainWindow implements Initializable{
    */
     @FXML
     void login(ActionEvent event) throws IOException {
-		if(passwordTF.getText().equals(genericUser.getPassword()) && idTF.getText().equals(genericUser.getUserID()) ) {
-			
+    	FXMLLoader loader = new FXMLLoader(Main.class.getResource("../ui/IndexWindow.fxml"));
+		loader.setController(new IndexWindow());
+		
+		Parent parent = (Parent) loader.load();
+	
+		Stage stage = new Stage();
+		
+		Scene scene = new Scene(parent);
+		
+		stage.setScene(scene);
+		
+		stage.show();
+		try {
+		Node source = (Node)event.getSource();
+		Stage old = (Stage) source.getScene().getWindow();
+		old.close();
+		}catch(Exception e){
+			e.printStackTrace();
 		}
-    }
+	}
     
     @FXML
     void register(ActionEvent event) throws IOException {

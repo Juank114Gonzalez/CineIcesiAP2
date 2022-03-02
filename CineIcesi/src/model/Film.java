@@ -26,4 +26,9 @@ public class Film {
 	public void setDuration(Date duration) {
 		this.duration = duration;
 	}
+	
+	@Override
+	public String toString() {
+		return this.filmName.toUpperCase();
+	}
 }

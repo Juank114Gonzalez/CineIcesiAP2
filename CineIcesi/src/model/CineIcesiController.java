@@ -4,19 +4,20 @@ import java.util.ArrayList;
 
 public class CineIcesiController {
 
-	private static ArrayList<Film> catalogFilm;
+	public static ArrayList<Film> catalogueFilm;
 	
 	public CineIcesiController() {
-		catalogFilm = new ArrayList<Film>();
+		catalogueFilm = new ArrayList<Film>();
 	}
 
-	public static ArrayList<Film> getCatalogFilm() {
-		return catalogFilm;
+	public static ArrayList<Film> getCatalogueFilm() {
+		return catalogueFilm;
 	}
 
-	public static void setCatalogFilm(ArrayList<Film> catalogFilm) {
-		CineIcesiController.catalogFilm = catalogFilm;
+	public static void setCatalogueFilm(ArrayList<Film> catalogFilm) {
+		CineIcesiController.catalogueFilm = catalogFilm;
 	}
+	
 	
 	
 	
