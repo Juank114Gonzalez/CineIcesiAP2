@@ -1,15 +1,11 @@
 package control;
 
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.net.URL;
-import java.util.EventObject;
-import java.util.Optional;
 import java.util.ResourceBundle;
-import model.UserData;
+
+import exceptions.UnregisteredUserException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,9 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -28,11 +22,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import main.Main;
 import model.User;
+import model.UserData;
 
 public class MainWindow implements Initializable{
 	
 	//Attributes
 	private User genericUser;
+	public static String flag = "";
 	
 	//Anchor pane
 	@FXML
@@ -62,21 +58,22 @@ public class MainWindow implements Initializable{
     //Images
     @FXML
     private ImageView logoIMG;
+    @FXML
+    private ImageView bgIMG;
+    @FXML
+    private ImageView bgIMG2;
+
 
 
     /*
    -----------------------------------------------Methods-----------------------------------------------
    */
     @FXML
-    void login(ActionEvent event) throws IOException {
+    void login(ActionEvent event) throws UnregisteredUserException, IOException {
     	if(checkUserExists(idTF.getText(),passwordTF.getText())) {
     		launchIndex(event);
     	}else {
-    		Alert alert = new Alert(Alert.AlertType.ERROR);
-    		alert.setTitle("Error al ingresar!");
-            alert.setContentText("El usuario no existe en la base de datos.\n\n"
-            					+"Para registrar haga click en registrar");
-            Optional<ButtonType> result = alert.showAndWait();
+    		new UnregisteredUserException();
     	}
     	
 	}
@@ -117,7 +114,7 @@ public class MainWindow implements Initializable{
     
     @FXML
     void register(ActionEvent event) throws IOException {
-    	if(event.getSource() == registerBTN) {
+    		flag = "login";
     		FXMLLoader loader = new FXMLLoader(Main.class.getResource("../ui/RegisterUser.fxml"));
     		loader.setController(new RegisterUser());
     		
@@ -137,7 +134,6 @@ public class MainWindow implements Initializable{
     		}catch(Exception e){
     			e.printStackTrace();
     		}
-    	}
     }
     
     
