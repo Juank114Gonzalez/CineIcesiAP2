@@ -149,7 +149,7 @@ public class RegisterUser implements Initializable{
      * This method opens the login window after registering an User successfully
      * @param event, event getter
      */
-    public void openLoginAgain(ActionEvent event) {
+    public void openLoginAgain(ActionEvent event) {//Para la controladora
     	 try {
  			FXMLLoader loader = new FXMLLoader(Main.class.getResource("../ui/MainWindow.fxml"));
  			
@@ -175,9 +175,11 @@ public class RegisterUser implements Initializable{
  			e.printStackTrace();
  		}
     }
-    
-    public void launchIndex(ActionEvent event) {
-    	MainWindow.flag = "login";
+    /**
+     * This method launches index window
+     * @param event
+     */
+    public void launchIndex(ActionEvent event) {//Para la controladora
     	try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("../ui/IndexWindow.fxml"));
 			loader.setController(new IndexWindow());
@@ -204,7 +206,10 @@ public class RegisterUser implements Initializable{
 		}
    	 	
    }
-    
+    /**
+     * This method launches the previous window
+     * @param event
+     */
     @FXML
     void goBack(ActionEvent event) {
     	if(MainWindow.flag.equals("login")) {
@@ -219,7 +224,7 @@ public class RegisterUser implements Initializable{
      * @param parameter, String, it is the string that may have a space
      * @return out, Boolean, it is true if there is any space into the string, false otherwise
      */
-    public boolean detectSpaces (String parameter) {
+    public boolean detectSpaces (String parameter) {//Para la controladora
     	boolean out = false;
     	for (int i = 0; i < parameter.length(); i++) {
     		if(parameter.charAt(i) == ' ') {
@@ -233,13 +238,16 @@ public class RegisterUser implements Initializable{
     /**
      * This method clears all the text fields
      */
-    public void clearTFs() {
+    public void clearTFs() {//Para la controladora
     	confirmPasswordTF.setText("");
     	idTF.setText("");
     	nameRegisterTF.setText("");
     	passwordTF.setText("");
     }
-    
+
+    /**
+     * This method initializes the window
+     */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub

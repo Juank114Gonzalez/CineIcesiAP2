@@ -21,36 +21,40 @@ import model.CineIcesiController;
 
 public class RegisterShow implements Initializable {
 
-   @FXML
+	//Choice boxes
+	@FXML
     private ChoiceBox<?> availableRoomCB;
-
-    @FXML
-    private DatePicker datePickerDP;
-
-    @FXML
-    private TextField durationShowTF;
-
-    @FXML
+	@FXML
     private ChoiceBox<String> filmListCB;
-    
-    @FXML
-    private Button back_BTN;
-
-    @FXML
-    private TextField startTimeTF;
-
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
-	}
 	
+	//Date pickers 
+   @FXML
+   private DatePicker datePickerDP;
+
+   //Text fields 
+   @FXML
+   private TextField durationShowTF;
+   @FXML
+   private TextField startTimeTF;
+    
+   //Buttons
+   @FXML
+   private Button back_BTN;
+
+    
+   /**
+    * This method launches the previous window
+    */
 	@FXML
     void goBack(ActionEvent event) {
 		launchIndex(event);
     }
 	
-	public void launchIndex(ActionEvent event) {
+	/**
+	 * This method launches the index window
+	 * @param event
+	 */
+	public void launchIndex(ActionEvent event) {//Pa la controladora
     	MainWindow.flag = "login";
     	try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("../ui/IndexWindow.fxml"));
@@ -77,9 +81,21 @@ public class RegisterShow implements Initializable {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * this method sets all the items of the films choice box
+	 */
 	
 	public void fullFilmListCB() {
 		filmListCB.getItems().addAll(CineIcesiController.catalogueFilm.toString());
+	}
+
+	/**
+	 * This method initializes the window
+	 */
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

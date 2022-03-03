@@ -19,70 +19,82 @@ import main.Main;
 
 public class IndexWindow implements Initializable {
 	
+	//Buttons
+  	@FXML
+    private Button administrateRoomsBTN;
+    @FXML
+    private Button registerShowBTN;
+    @FXML
+    private Button registerUserBTN;	 
+    @FXML
+    private Button logOutBTN;
+  
+  	//Images
+    @FXML
+    private ImageView bgIMG; 
+    @FXML
+    private ImageView cineIMG;
+    @FXML
+    private ImageView roomIMG;
+    @FXML
+    private ImageView userIMG;
+    
+    
+    //Anchor panes
+    @FXML
+    private AnchorPane mainAP;
 
-	  @FXML
-	    private Button administrateRoomsBTN;
-
-	    @FXML
-	    private ImageView bgIMG;
-
-	    @FXML
-	    private ImageView cineIMG;
-
-	    @FXML
-	    private AnchorPane mainAP;
-
-	    @FXML
-	    private Button registerShowBTN;
-
-	    @FXML
-	    private Button registerUserBTN;
 	    
-	    @FXML
-	    private Button logOutBTN;
+    /**
+     * This method launches the register user window
+     * @param event
+     * @throws IOException
+     */
+    @FXML
+    void openRegisterUserWindow(ActionEvent event) throws IOException {
+    	MainWindow.flag = "Index";
+		FXMLLoader loader = new FXMLLoader(Main.class.getResource("../ui/RegisterUser.fxml"));
+		loader.setController(new RegisterUser());
+		
+		Parent parent = (Parent) loader.load();
+	
+		Stage stage = new Stage();
+		
+		Scene scene = new Scene(parent);
+		
+		stage.setScene(scene);
+		
+		stage.show();
+		try {
+		Node source = (Node)event.getSource();
+		Stage old = (Stage) source.getScene().getWindow();
+		old.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+    }	
 
-	    @FXML
-	    private ImageView roomIMG;
-
-	    @FXML
-	    private ImageView userIMG;
-
-	    @FXML
-	    void openRegisterUserWindow(ActionEvent event) throws IOException {
-	    	MainWindow.flag = "Index";
-    		FXMLLoader loader = new FXMLLoader(Main.class.getResource("../ui/RegisterUser.fxml"));
-    		loader.setController(new RegisterUser());
-    		
-    		Parent parent = (Parent) loader.load();
-    	
-    		Stage stage = new Stage();
-    		
-    		Scene scene = new Scene(parent);
-    		
-    		stage.setScene(scene);
-    		
-    		stage.show();
-    		try {
-    		Node source = (Node)event.getSource();
-    		Stage old = (Stage) source.getScene().getWindow();
-    		old.close();
-    		}catch(Exception e){
-    			e.printStackTrace();
-    		}
-	    }	
-
-
+	/**
+	 * This method initializes the window
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		
 	}
-	
+	/**
+	 * This method launches the previous window
+	 * @param event
+	 */
 	 @FXML
 	    void goBack(ActionEvent event) {
 	    	openLoginAgain(event);
 	    }
 	
+	 /**
+	  * This method launches the register show window
+	  * @param event
+	  */
 	@FXML
     void openRegisterShowWindow(ActionEvent event) {
 		try {
@@ -118,7 +130,10 @@ public class IndexWindow implements Initializable {
 
 
 	
-	
+	/**
+	 * This method launches the login window
+	 * @param event
+	 */
 	public void openLoginAgain(ActionEvent event) {
 		try {
  			FXMLLoader loader = new FXMLLoader(Main.class.getResource("../ui/MainWindow.fxml"));

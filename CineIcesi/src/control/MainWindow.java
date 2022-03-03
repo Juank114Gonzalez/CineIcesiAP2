@@ -68,6 +68,12 @@ public class MainWindow implements Initializable{
     /*
    -----------------------------------------------Methods-----------------------------------------------
    */
+    /**
+     * This method allows to a registered user go to index window
+     * @param event
+     * @throws UnregisteredUserException
+     * @throws IOException
+     */
     @FXML
     void login(ActionEvent event) throws UnregisteredUserException, IOException {
     	if(checkUserExists(idTF.getText(),passwordTF.getText())) {
@@ -78,7 +84,12 @@ public class MainWindow implements Initializable{
     	
 	}
     
-    public void launchIndex(ActionEvent event) throws IOException {
+    /**
+     * This method launches the index window
+     * @param event
+     * @throws IOException
+     */
+    public void launchIndex(ActionEvent event) throws IOException {//Para la controladora
     	FXMLLoader loader = new FXMLLoader(Main.class.getResource("../ui/IndexWindow.fxml"));
 		loader.setController(new IndexWindow());
 		
@@ -99,7 +110,12 @@ public class MainWindow implements Initializable{
 			e.printStackTrace();
 		}
     }
-    
+    /**
+     * This method checks if an user exists
+     * @param id
+     * @param pass
+     * @return
+     */
     public boolean checkUserExists(String id, String pass) {
     	boolean out = false;
     	for(User user : UserData.data) {
@@ -111,32 +127,45 @@ public class MainWindow implements Initializable{
     	}
     	return out;
     }
-    
+    /**
+     * This method launches register user window when a button is pressed
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void register(ActionEvent event) throws IOException {
     		flag = "login";
-    		FXMLLoader loader = new FXMLLoader(Main.class.getResource("../ui/RegisterUser.fxml"));
-    		loader.setController(new RegisterUser());
-    		
-    		Parent parent = (Parent) loader.load();
-    	
-    		Stage stage = new Stage();
-    		
-    		Scene scene = new Scene(parent);
-    		
-    		stage.setScene(scene);
-    		
-    		stage.show();
-    		try {
-    		Node source = (Node)event.getSource();
-    		Stage old = (Stage) source.getScene().getWindow();
-    		old.close();
-    		}catch(Exception e){
-    			e.printStackTrace();
-    		}
+    		launchRegisterWindow(event);
     }
-    
-    
+    /**
+     * This method launches register user window
+     * @param event
+     * @throws IOException
+     */
+    void launchRegisterWindow(ActionEvent event) throws IOException {//Para la controladora
+    	FXMLLoader loader = new FXMLLoader(Main.class.getResource("../ui/RegisterUser.fxml"));
+		loader.setController(new RegisterUser());
+		
+		Parent parent = (Parent) loader.load();
+	
+		Stage stage = new Stage();
+		
+		Scene scene = new Scene(parent);
+		
+		stage.setScene(scene);
+		
+		stage.show();
+		try {
+		Node source = (Node)event.getSource();
+		Stage old = (Stage) source.getScene().getWindow();
+		old.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+    }
+    /**
+     * This method initializes the windows
+     */
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
