@@ -3,14 +3,14 @@ package model;
 public class Room {
 
 	private Chair[] chairs;
-	private Show currentlyShow;
+	private Show currentShow;
 	
 	
 	
 	public Room() {}
 	
-	public Room(Show currentlyShow) {
-		this.currentlyShow = currentlyShow;
+	public Room(Show currentShow) {
+		this.currentShow = currentShow;
 	}
 	
 	
@@ -21,11 +21,11 @@ public class Room {
 	public void setChairs(Chair[] chairs) {
 		this.chairs = chairs;
 	}
-	public Show getCurrentlyShow() {
-		return currentlyShow;
+	public Show getcurrentShow() {
+		return currentShow;
 	}
-	public void setCurrentlyShow(Show currentlyShow) {
-		this.currentlyShow = currentlyShow;
+	public void setcurrentShow(Show currentShow) {
+		this.currentShow = currentShow;
 	}
 	
 	
