@@ -90,5 +90,10 @@
          </items>
       </SplitPane>
       <Button fx:id="logOutBTN" layoutX="1173.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" text="Desconectarse" />
+      <Label fx:id="nameIndexLB" layoutX="14.0" layoutY="9.0" prefHeight="35.0" prefWidth="1151.0" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -43,7 +44,10 @@ public class IndexWindow implements Initializable {
     //Anchor panes
     @FXML
     private AnchorPane mainAP;
-
+    
+    //
+    @FXML
+    private Label nameIndexLB;
 	    
     /**
      * This method launches the register user window
@@ -52,7 +56,7 @@ public class IndexWindow implements Initializable {
      */
     @FXML
     void openRegisterUserWindow(ActionEvent event) throws IOException {
-    	MainWindow.flag = "Index";
+    	MainController.flag = "Index";
 		FXMLLoader loader = new FXMLLoader(Main.class.getResource("../ui/RegisterUser.fxml"));
 		loader.setController(new RegisterUser());
 		
@@ -75,12 +79,20 @@ public class IndexWindow implements Initializable {
     }	
 
 	/**
+	 * This method set label as logged user name
+	 */
+    void setLabel() {
+    	nameIndexLB.setText(MainController.loggedUser.getName());
+    }
+    
+    
+    /**
 	 * This method initializes the window
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		
+		setLabel();
 	}
 	/**
 	 * This method launches the previous window
@@ -122,10 +134,13 @@ public class IndexWindow implements Initializable {
 			e.printStackTrace();
 		}
     }
-	
+	/**
+	 * This method launch Administrator rooms window
+	 * @param event
+	 */
 	@FXML
     void openRoomAdministrationWindow(ActionEvent event) {
-
+		MainController.launchRoomAdministration(event);
     }
 
 

@@ -6,11 +6,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
 public class ExistingUserException extends Exception {
-	public ExistingUserException() {
+	public ExistingUserException(String id) {
 		super();
 		Alert alert = new Alert(Alert.AlertType.WARNING);
 		alert.setTitle("Usuario Existente!");
-        alert.setContentText("Está intentando añadir un usuario existente");
+        alert.setContentText("Ya hay un usuario registrado con este ID " + "\"" + id + "\"");
         Optional<ButtonType> result = alert.showAndWait();
 	}
 }
