@@ -2,6 +2,6 @@ package model;
 
 public enum ChairStatus {
 
-	 LOCKED, UNLOCKED;
+	AVAILABLE, UNAVAILABLE;
 	
 }

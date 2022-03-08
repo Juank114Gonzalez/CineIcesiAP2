@@ -2,16 +2,18 @@ package model;
 
 import java.util.HashMap;
 
+import javafx.scene.control.Button;
+
 public class Chair {
 	
 	private ChairStatus status;
 	
-	private HashMap<String,Integer> position;
+	private Button chairButton;
 
 	
-	public Chair(ChairStatus status) {
+	public Chair(ChairStatus status, Button chairButton) {
 		this.status = status;
-		position = new HashMap<>();
+		this.chairButton = chairButton;
 	}
 	
 	
@@ -23,12 +25,14 @@ public class Chair {
 		this.status = status;
 	}
 
-	public HashMap<String, Integer> getPosition() {
-		return position;
+
+	public Button getChairButton() {
+		return chairButton;
 	}
 
-	public void setPosition(HashMap<String, Integer> position) {
-		this.position = position;
+
+	public void setChairButton(Button chairButton) {
+		this.chairButton = chairButton;
 	}
 	
 }
