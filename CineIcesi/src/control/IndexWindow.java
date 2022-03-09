@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import exceptions.EmptyCatalogueException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import main.Main;
+import model.CineController;
 
 public class IndexWindow implements Initializable {
 	
@@ -31,6 +33,8 @@ public class IndexWindow implements Initializable {
     private Button logOutBTN;
   
   	//Images
+  	@FXML
+    private ImageView back_IMG;
     @FXML
     private ImageView bgIMG; 
     @FXML
@@ -100,7 +104,7 @@ public class IndexWindow implements Initializable {
 	 */
 	 @FXML
 	    void goBack(ActionEvent event) {
-	    	openLoginAgain(event);
+	    	MainController.launchLogin(event);
 	    }
 	
 	 /**
@@ -108,31 +112,14 @@ public class IndexWindow implements Initializable {
 	  * @param event
 	  */
 	@FXML
-    void openRegisterShowWindow(ActionEvent event) {
-		try {
-			FXMLLoader loader = new FXMLLoader(Main.class.getResource("../ui/RegisterShow.fxml"));
-			loader.setController(new RegisterShow());
-			Parent parent = (Parent) loader.load();
-			
-			Stage stage = new Stage();
-			
-			Scene scene = new Scene(parent);
-			
-			stage.setScene(scene);
-			
-			stage.show();
-			
-			try {
-	    		Node source = (Node)event.getSource();
-	    		Stage old = (Stage) source.getScene().getWindow();
-	    		old.close();
-	    	}catch(Exception e){
-	    		e.printStackTrace();
-	    	}
-		} catch (IOException e) {
-			// TODO: handle exception
-			e.printStackTrace();
+    void openRegisterShowWindow(ActionEvent event) throws EmptyCatalogueException{
+		if (CineController.catalogue.size() == 0) {
+			new EmptyCatalogueException(event);
+		}else {
+			MainController.launchRegisterShowWindow(event);
 		}
+	
+		
     }
 	/**
 	 * This method launch Administrator rooms window
@@ -142,36 +129,6 @@ public class IndexWindow implements Initializable {
     void openRoomAdministrationWindow(ActionEvent event) {
 		MainController.launchRoomAdministration(event);
     }
-
-
 	
-	/**
-	 * This method launches the login window
-	 * @param event
-	 */
-	public void openLoginAgain(ActionEvent event) {
-		try {
- 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("../ui/MainWindow.fxml"));
- 			Parent parent = (Parent) loader.load();
- 			
- 			Stage stage = new Stage();
- 			
- 			Scene scene = new Scene(parent);
- 			
- 			stage.setScene(scene);
- 			
- 			stage.show();
- 			
- 			try {
- 	    		Node source = (Node)event.getSource();
- 	    		Stage old = (Stage) source.getScene().getWindow();
- 	    		old.close();
- 	    	}catch(Exception e){
- 	    		e.printStackTrace();
- 	    	}
- 		} catch (IOException e) {
- 			// TODO: handle exception
- 			e.printStackTrace();
- 		}
-   }
+	
 }

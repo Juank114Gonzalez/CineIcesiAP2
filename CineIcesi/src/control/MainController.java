@@ -3,6 +3,7 @@ package control;
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -12,12 +13,13 @@ import main.Main;
 import model.User;
 
 /**
- * This class contains many methods which will be used into other classes
+ * This class contains some methods which will be used into more than one class
  */
 public class MainController {
 	// Attributes
 	public static String flag = "";// This flag will be used to know if the user opens another window from 
-	public static String userData = "data/userData.txt";
+	public static String userDataPath = "data/userData.txt";// This is the path where the user data will be saved in
+	public static String movieDataPath = "data/movieData.txt";// This is the path where the user data will be saved in
 	public static User loggedUser = new User();
 	
 	/**
@@ -55,6 +57,39 @@ public class MainController {
     
     
     /**
+	  * This method launches the register show window
+	  * @param event
+	  */
+	@FXML
+   public static void launchRegisterShowWindow(ActionEvent event) {
+		
+		try {
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("../ui/RegisterShow.fxml"));
+			loader.setController(new RegisterShow());
+			Parent parent = (Parent) loader.load();
+			
+			Stage stage = new Stage();
+			
+			Scene scene = new Scene(parent);
+			
+			stage.setScene(scene);
+			
+			stage.show();
+			
+			try {
+	    		Node source = (Node)event.getSource();
+	    		Stage old = (Stage) source.getScene().getWindow();
+	    		old.close();
+	    	}catch(Exception e){
+	    		e.printStackTrace();
+	    	}
+		} catch (IOException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+   }
+    
+    /**
      * This method launches the index window
      * @param event
      * @throws IOException
@@ -62,6 +97,40 @@ public class MainController {
     public static void launchIndex(ActionEvent event) {
     	FXMLLoader loader = new FXMLLoader(Main.class.getResource("../ui/IndexWindow.fxml"));
 		loader.setController(new IndexWindow());
+		
+		Parent parent = null;
+		try {
+			parent = (Parent) loader.load();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	
+		Stage stage = new Stage();
+		
+		Scene scene = new Scene(parent);
+		
+		stage.setScene(scene);
+		
+		stage.show();
+		try {
+		Node source = (Node)event.getSource();
+		Stage old = (Stage) source.getScene().getWindow();
+		old.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+    }
+    
+    
+    /**
+     * This method launches the register film window
+     * @param event
+     * @throws IOException
+     */
+    public static void launchRegisterFilm(ActionEvent event) {
+    	FXMLLoader loader = new FXMLLoader(Main.class.getResource("../ui/RegisterFilm.fxml"));
+		loader.setController(new RegisterFilm());
 		
 		Parent parent = null;
 		try {
@@ -155,17 +224,13 @@ public class MainController {
     /**
      * 
      * @param event
+     * @throws IOException 
      */
-    public static void launchCroquisWindoBig(ActionEvent event){
-		FXMLLoader loader = new FXMLLoader(Main.class.getResource("../ui/CroquisWindowBig.fxml"));
+    public static void launchCroquisWindowBig(ActionEvent event) throws IOException{
+		FXMLLoader loader = new FXMLLoader(Main.class.getResource("../ui/CroquisWindowBigRoom.fxml"));
 		
-		Parent parent = null;
-		try {
-			parent = (Parent) loader.load();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		Parent parent = (Parent) loader.load();
+		
 		
 		Stage stage = new Stage();
 		
@@ -189,16 +254,10 @@ public class MainController {
      * 
      * @param event
      */
-    public static void launchCroquisWindoMiniRoom(ActionEvent event){
-		FXMLLoader loader = new FXMLLoader(Main.class.getResource("../ui/CroquisWindoMiniRoom.fxml"));
+    public static void launchCroquisWindowMiniRoom(ActionEvent event) throws IOException{
+		FXMLLoader loader = new FXMLLoader(Main.class.getResource("../ui/CroquisWindowMiniRoom.fxml"));
 		
-		Parent parent = null;
-		try {
-			parent = (Parent) loader.load();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		Parent parent = (Parent) loader.load();
 		
 		Stage stage = new Stage();
 		

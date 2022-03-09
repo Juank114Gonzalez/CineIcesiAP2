@@ -3,6 +3,7 @@ package control;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import exceptions.UnregisteredUserException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,8 +14,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import model.CineController;
 import model.User;
-import model.UserData;
 
 public class MainWindow implements Initializable {
 
@@ -63,7 +64,8 @@ public class MainWindow implements Initializable {
 		if (checkUserExists(idTF.getText(), passwordTF.getText())) {
 			launchIndex(event);
 		} else {
-			new UnregisteredUserException();
+			MainController.flag = "login";
+			new UnregisteredUserException(event);
 		}
 
 	}
@@ -87,7 +89,7 @@ public class MainWindow implements Initializable {
 	 */
 	public boolean checkUserExists(String id, String pass) {
 		boolean out = false;
-		for (User user : UserData.data) {
+		for (User user : CineController.userData) {
 			if (user.getUserID().equals(id) && user.getPassword().equals(pass)) {
 				MainController.loggedUser = user;
 				out = true;

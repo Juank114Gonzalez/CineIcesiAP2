@@ -1,5 +1,6 @@
 package control;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -26,14 +27,17 @@ public class RoomAdministrationWindow implements Initializable {
 	@FXML
 	private Button miniRoomBTN;
 
+	/***************************************************************************
+	 * * Methods * *
+	 **************************************************************************/
 	@FXML
-	void openBigRoomWindow(ActionEvent event) {
-		MainController.launchCroquisWindoBig(event);
+	void openBigRoomWindow(ActionEvent event) throws IOException {
+		MainController.launchCroquisWindowBig(event);
 	}
 
 	@FXML
-	void openMiniRoomWindow(ActionEvent event) {
-		MainController.launchCroquisWindoMiniRoom(event);
+	void openMiniRoomWindow(ActionEvent event) throws IOException {
+		MainController.launchCroquisWindowMiniRoom(event);
 	}
 
 	@Override

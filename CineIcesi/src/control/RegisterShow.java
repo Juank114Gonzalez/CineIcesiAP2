@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import exceptions.EmptyCatalogueException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,7 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import model.CineIcesiController;
+import javafx.scene.image.ImageView;
+import model.CineController;
 
 public class RegisterShow implements Initializable {
 	
@@ -38,6 +40,10 @@ public class RegisterShow implements Initializable {
 	@FXML
 	private TextField startTimeTF;
 
+	//Images
+	@FXML
+    private ImageView back_IMG;
+	
 	// Buttons
 	@FXML
 	private Button back_BTN;
@@ -64,7 +70,7 @@ public class RegisterShow implements Initializable {
 	 * this method sets all the items of the films choice box
 	 */
 	public void fullFilmListCB() {
-		filmListCB.getItems().addAll(CineIcesiController.catalogueFilm.toString());
+		//filmListCB.getItems().addAll(CineIcesiController.catalogueFilm.toString());
 	}
 	
 	/**
@@ -86,6 +92,7 @@ public class RegisterShow implements Initializable {
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
 		// TODO Auto-generated method stub
 		for(int i = 0; i<24; i++) {
 			hours.add(""+(i));
@@ -97,5 +104,6 @@ public class RegisterShow implements Initializable {
 		fillMinutesCB();
 		
 	}
+	
 
 }

@@ -22,8 +22,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import model.CineController;
 import model.User;
-import model.UserData;
 
 public class RegisterUser implements Initializable {
 
@@ -49,6 +49,8 @@ public class RegisterUser implements Initializable {
 	private Label loginLB;
 
 	// Images
+	@FXML
+    private ImageView back_IMG;
 	@FXML
 	private ImageView logoIMG;
 	@FXML
@@ -83,14 +85,18 @@ public class RegisterUser implements Initializable {
 		if (!validReg) {
 			clearTFs();
 		} else {
-			UserData.data.add(new User(nameRegisterTF.getText(), idTF.getText(), passwordTF.getText()));
+			CineController.userData.add(new User(nameRegisterTF.getText(), idTF.getText(), passwordTF.getText()));
 			saveAsJavaByteCode();
-			System.out.println(UserData.data);
+			System.out.println(CineController.userData);
 			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 			alert.setTitle("Usuario añadido!");
 			alert.setContentText("El usuario " + nameRegisterTF.getText() + " ha sido añadido con éxito");
 			Optional<ButtonType> result = alert.showAndWait();
-			openLoginAgain(event);
+			if (MainController.flag.equals("login") ) {
+				openLoginAgain(event);
+				clearTFs();
+			}
+			
 		}
 	}
 
@@ -102,7 +108,7 @@ public class RegisterUser implements Initializable {
 	 */
 	public boolean checkUserExists(String id) {
 		boolean out = false;
-		for (User user : UserData.data) {
+		for (User user : CineController.userData) {
 			if (user.getUserID().equals(id)) {
 				out = true;
 				break;
@@ -113,12 +119,12 @@ public class RegisterUser implements Initializable {
 	}
 
 	/**
-	 * This method saves all the data contained on the ArrayList "UserData.data"
+	 * This method saves all the data contained on the ArrayList "CineController.userData"
 	 */
 	public void saveAsJavaByteCode() {
 		try {
-			ArrayList<User> userList = UserData.data;
-			File ref = new File(MainController.userData);
+			ArrayList<User> userList = CineController.userData;
+			File ref = new File(MainController.userDataPath);
 			FileOutputStream fos = new FileOutputStream(ref);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(userList);

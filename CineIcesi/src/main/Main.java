@@ -7,33 +7,36 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 import control.MainController;
-import control.RegisterUser;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.CineIcesiController;
+import model.CineController;
+import model.Movie;
 import model.User;
-import model.UserData;
 
+/**
+ * This is the main Controller of the project, this class executes the main window of the interface
+ *
+ */
 public class Main extends Application {
 
-	private CineIcesiController systemOF;
 
 	public Main() {
-		systemOF = new CineIcesiController();
 	}
 
 	public static void main(String[] args) {
 		Main ppal = new Main();
 
-		if (fileExists()) {
-			loadData();
+		if (fileExists(MainController.userDataPath)) {
+			loadUserData();
+		}
+		if (fileExists(MainController.movieDataPath)) {
+			loadMovieData();
 		}
 
 		launch(args);
-
 	}
 
 	/**
@@ -41,9 +44,9 @@ public class Main extends Application {
 	 * 
 	 * @return out, true if the data file exists
 	 */
-	public static boolean fileExists() {
+	public static boolean fileExists(String path) {
 		boolean out = false;
-		File aux = new File(MainController.userData);
+		File aux = new File(path);
 		if (aux.exists()) {
 			out = true;
 		}
@@ -52,17 +55,37 @@ public class Main extends Application {
 	}
 
 	/**
-	 * This Method is responsible for loading the serialized information in the
-	 * static variable UserData.data for later use in execution
+	 * This Method loads the serialized information in the
+	 * static variable UserData.data for its later use in execution
 	 */
-	public static void loadData() {
+	public static void loadUserData() {
 
 		try {
-			File file = new File(MainController.userData);
+			File file = new File(MainController.userDataPath);
 			FileInputStream fis = new FileInputStream(file);
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			ArrayList<User> userList = (ArrayList<User>) ois.readObject();
-			UserData.data = userList;
+			CineController.userData = userList;
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * This Method loads the serialized information in the
+	 * static variable UserData.catalogue for its later use in execution
+	 */
+	public static void loadMovieData() {
+
+		try {
+			File file = new File(MainController.movieDataPath);
+			FileInputStream fis = new FileInputStream(file);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			ArrayList<Movie> movieList = (ArrayList<Movie>) ois.readObject();
+			CineController.catalogue = movieList;
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {

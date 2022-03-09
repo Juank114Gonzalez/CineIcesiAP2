@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
@@ -8,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainAP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #00579d;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="mainAP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #00579d;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="bgIMG" fitHeight="720.0" fitWidth="1280.0">
          <image>
@@ -38,6 +39,9 @@
                      <font>
                         <Font size="24.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                </children>
             </AnchorPane>
@@ -61,12 +65,15 @@
                      <font>
                         <Font size="24.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                </children>
             </AnchorPane>
          </items>
       </SplitPane>
-      <SplitPane layoutX="510.0" layoutY="399.0" orientation="VERTICAL" prefHeight="264.0" prefWidth="261.0" style="-fx-background-color: #F0EBD8; -fx-background-radius: 25;">
+      <SplitPane layoutX="734.0" layoutY="405.0" orientation="VERTICAL" prefHeight="264.0" prefWidth="261.0" style="-fx-background-color: #F0EBD8; -fx-background-radius: 25;">
          <items>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="274.0" prefWidth="269.0">
                <children>
@@ -84,6 +91,9 @@
                      <font>
                         <Font size="24.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                </children>
             </AnchorPane>
