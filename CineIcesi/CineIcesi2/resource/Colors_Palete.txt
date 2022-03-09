@@ -1,0 +1,5 @@
+Azul:  #00579d
+Indigo Obscuro: #1D2D44
+Gris azulado: #3E5C76
+Azul grisaceo: #748CAB
+Beige: #F0EBD8
