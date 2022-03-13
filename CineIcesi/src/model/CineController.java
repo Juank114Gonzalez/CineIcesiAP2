@@ -3,6 +3,9 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 /**
  * This is the controller class of the cinema, this class have a static ArrayList of the class MovieShow
  *
@@ -17,7 +20,7 @@ public class CineController implements Serializable	{
 	/*
 	 * This static ArrayList contains all the movie shows registered by the user
 	 */
-	public static ArrayList<MovieShow> shows = new ArrayList<>();
+	public static ObservableList<MovieShow> shows = FXCollections.observableArrayList();
 	
 	/*
 	 * This static ArrayList contains all the movies registered by the user

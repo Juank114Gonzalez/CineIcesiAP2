@@ -1,6 +1,8 @@
 package model;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -55,6 +57,14 @@ public class Movie implements Serializable{
 	 */
 	public void setDuration(Date duration) {
 		this.duration = duration;
+	}
+	
+	/**
+	 * Returns a String with the basic information of the movie
+	 */
+	public String toString() {
+		
+		return  "Name: " + name + " Date: " + duration ;
 	}
 	
 	

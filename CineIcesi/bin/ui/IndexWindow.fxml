@@ -99,6 +99,32 @@
             </AnchorPane>
          </items>
       </SplitPane>
+      <SplitPane layoutX="280.0" layoutY="415.0" orientation="VERTICAL" prefHeight="264.0" prefWidth="261.0" style="-fx-background-color: #F0EBD8; -fx-background-radius: 25;">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="274.0" prefWidth="269.0">
+               <children>
+                  <ImageView fx:id="movieIMG" fitHeight="200.0" fitWidth="200.0" layoutX="34.0" layoutY="12.0">
+                     <image>
+                        <Image url="@../../../CineIcesi2/resource/movieIMG.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" layoutY="211.0" prefHeight="51.0" prefWidth="258.0" text="CREAR PELÍCULA">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="registerMovieBTN" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#openRegisterFilmWindow" opacity="0.0" prefHeight="262.0" prefWidth="261.0" style="-fx-background-color: #009d60;" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
       <Button fx:id="logOutBTN" layoutX="1173.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" text="Desconectarse" />
       <Label fx:id="nameIndexLB" layoutX="14.0" layoutY="9.0" prefHeight="35.0" prefWidth="1151.0" textFill="WHITE">
          <font>

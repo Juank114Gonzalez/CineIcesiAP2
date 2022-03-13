@@ -5,13 +5,13 @@ import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
-public class EmptyFieldsException extends Exception{
+public class OverlappedShowsException extends Exception{
 
-	public EmptyFieldsException() {
+	public OverlappedShowsException() {
 		super();
-		Alert alert = new Alert(Alert.AlertType.ERROR);
+		Alert alert = new Alert(Alert.AlertType.WARNING);
 		alert.setTitle("Error al añadir!");
-        alert.setContentText("Debe completar todos los campos para hacer el registro");
+        alert.setContentText("La función se superpone con alguna otra registrada actualmente");
         Optional<ButtonType> result = alert.showAndWait();
 	}
 

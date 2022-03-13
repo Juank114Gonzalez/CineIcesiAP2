@@ -22,7 +22,7 @@
             <Image url="@../../resource/blackBG.png" />
          </image>
       </ImageView>
-      <Label layoutX="496.0" layoutY="233.0" text="Nombre" textFill="WHITE">
+      <Label layoutX="496.0" layoutY="233.0" text="Nombre de película" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
@@ -41,13 +41,13 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <ChoiceBox fx:id="hoursCB" layoutX="496.0" layoutY="415.0" prefHeight="60.0" prefWidth="120.0" />
-      <TextField alignment="TOP_CENTER" editable="false" layoutX="625.0" layoutY="415.0" prefHeight="57.0" prefWidth="43.0" text=":">
+      <ChoiceBox fx:id="hoursCB" layoutX="496.0" layoutY="436.0" prefHeight="60.0" prefWidth="120.0" />
+      <TextField alignment="TOP_CENTER" editable="false" layoutX="625.0" layoutY="436.0" prefHeight="57.0" prefWidth="43.0" text=":">
          <font>
             <Font size="28.0" />
          </font>
       </TextField>
-      <ChoiceBox fx:id="minutesCB" layoutX="676.0" layoutY="415.0" prefHeight="60.0" prefWidth="120.0" />
+      <ChoiceBox fx:id="minutesCB" layoutX="676.0" layoutY="436.0" prefHeight="60.0" prefWidth="120.0" />
       <Label layoutX="508.0" layoutY="128.0" text="Creación de Película" textFill="WHITE">
          <font>
             <Font size="31.0" />
@@ -66,5 +66,15 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Label layoutX="498.0" layoutY="406.0" text="HH:" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="676.0" layoutY="406.0" text="mm:" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

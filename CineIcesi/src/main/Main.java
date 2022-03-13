@@ -8,12 +8,15 @@ import java.util.ArrayList;
 
 import control.MainController;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.CineController;
 import model.Movie;
+import model.MovieShow;
 import model.User;
 
 /**
@@ -34,6 +37,9 @@ public class Main extends Application {
 		}
 		if (fileExists(MainController.movieDataPath)) {
 			loadMovieData();
+		}
+		if (fileExists(MainController.showsDataPath)) {
+			loadShowsData();
 		}
 
 		launch(args);
@@ -86,6 +92,27 @@ public class Main extends Application {
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			ArrayList<Movie> movieList = (ArrayList<Movie>) ois.readObject();
 			CineController.catalogue = movieList;
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * This Method loads the serialized information in the
+	 * static variable UserData.shows for its later use in execution
+	 */
+	public static void loadShowsData() {
+
+		try {
+			File file = new File(MainController.showsDataPath);
+			FileInputStream fis = new FileInputStream(file);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			ArrayList<MovieShow> showsList =(ArrayList<MovieShow>) ois.readObject();
+			ObservableList<MovieShow> newList = FXCollections.observableArrayList(showsList);
+			CineController.shows = newList;
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {

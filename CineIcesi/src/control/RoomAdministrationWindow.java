@@ -32,12 +32,12 @@ public class RoomAdministrationWindow implements Initializable {
 	 **************************************************************************/
 	@FXML
 	void openBigRoomWindow(ActionEvent event) throws IOException {
-		MainController.launchCroquisWindowBig(event);
+		//MainController.launchCroquisWindowBig(event);
 	}
 
 	@FXML
 	void openMiniRoomWindow(ActionEvent event) throws IOException {
-		MainController.launchCroquisWindowMiniRoom(event);
+		MainController.launchSelectFunctionWindow(event);
 	}
 
 	@Override

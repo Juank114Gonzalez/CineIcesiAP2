@@ -79,12 +79,12 @@ public class RegisterFilm implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		
+		clearTFs();
 		// TODO Auto-generated method stub
 		
 		//This loop fills the hours ArrayList with the numbers from 0:00 to 23:00
 		for(int i = 0; i<24; i++) {
-			hours.add((i) + ":00");
+			hours.add((i) + "");
 		}
 		for(int i = 0; i<60; i= i+5) {
 			minutes.add(""+(i));
@@ -97,7 +97,7 @@ public class RegisterFilm implements Initializable{
 	@FXML
     void registerFilm(ActionEvent event) throws EmptyFieldsException, ExistingFilmException{
 		boolean validReg = true;
-		if (filmNameTF.getText().equals("") || hoursCB.getValue().equals(null) || minutesCB.getValue().equals(null)) {
+		if (filmNameTF.getText().equals("") || hoursCB.getValue().equals("") || minutesCB.getValue().equals("")) {
 			new EmptyFieldsException();
 			validReg = false;
 		} else if (checkMovieExists(filmNameTF.getText())) {
@@ -108,8 +108,8 @@ public class RegisterFilm implements Initializable{
 		if (!validReg) {
 			clearTFs();
 		} else {
-			String time = hoursCB.getValue() + ":" + minutesCB.getValue();
-			SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+			String time = hoursCB.getValue() + ":" + minutesCB.getValue() + ":00";
+			SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 			Date duration = null;
 			try {
 				duration = sdf.parse(time);
@@ -168,8 +168,11 @@ public class RegisterFilm implements Initializable{
 	 * This method clears the elements that contain text in the interface
 	 */
 	public void clearTFs() {
-		filmNameTF.setText(null);
+		filmNameTF.setText("");
 		hoursCB.setValue(null);
 		minutesCB.setValue(null);
+		//after setting fields as empty
+		hoursCB.setValue("");
+		minutesCB.setValue("");
 	}
 }

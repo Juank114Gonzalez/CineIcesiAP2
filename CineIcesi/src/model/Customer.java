@@ -1,10 +1,18 @@
 package model;
 
+import java.io.Serializable;
+
+import javafx.scene.control.Button;
+
 /**
  * This is the customer class, a customer has a name and an identification
  *
  */
-public class Customer {
+public class Customer implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private String identification;
 	

@@ -1,6 +1,7 @@
 package model;
 
-import java.util.ArrayList;
+import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -10,42 +11,138 @@ import java.util.Date;
  * 
  *
  */
-public class MovieShow {
-	private Date date;
+public class MovieShow implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private LocalDate date;
 	private Date time;
-	private ArrayList<Customer> customers = new ArrayList<>();
+	private Customer[][] customers;
 	private Movie movie;
-	private Room room;
-	
+	private String durationMovie;
+	private String movieName;
+	private String viewersCount;
+	private String timeString;
+	private RoomType type;
+
 	/**
 	 * This is the constructor method of the movie class
-	 * @param date, Date, this is the date of the
-	 * movie show
-	 * @param time, Date, this is the time when the movie is played
-	 * @param movie, Movie, this is the movie that is played
-	 * @param room, Room, this is the room where the show takes place
+	 * 
+	 * @param date,     LocalDate, this is the date of the movie show
+	 * @param time,     Date, this is the time when the movie is played
+	 * @param movie,    Movie, this is the movie that is played
+	 * @param roomType, String, this is the room where the show takes place
 	 */
-	public MovieShow(Date date, Date time, Movie movie, Room room) {
+	public MovieShow(LocalDate date, Date time, Movie movie, String roomType) {
+		if (roomType.toUpperCase().equals("MINI")) {
+			customers = new Customer[4][7];
+			this.type = RoomType.MINI;
+		} else if (roomType.toUpperCase().equals("NORMAL")) {
+			customers = new Customer[6][7];
+			this.type = RoomType.NORMAL;
+		}
 		this.date = date;
 		this.time = time;
 		this.movie = movie;
-		this.room = room;
+		this.movieName = this.movie.getName();
+		int hours = this.movie.getDuration().getHours();
+		int minutes = this.movie.getDuration().getMinutes();
+		this.durationMovie = hours + "h " + minutes + "m";
+		hours = this.time.getHours();
+		minutes = this.time.getMinutes();
+		this.timeString = hours + " : " + minutes;
+	}
+
+	/*
+	 * public void updateStatus() { int n = 0; if(customers != null) { for(int i =
+	 * 0; i < customers.length; i++) { for(int j = 0; j < 7; j++) {
+	 * if(customers[i][j] != null) { n++; } } }
+	 * 
+	 * setViewersCount( n + " / " + (customers.length * 7)); }
+	 * 
+	 * }
+	 */
+
+	public void setViewersCount(String viewersCount) {
+		this.viewersCount = viewersCount;
+	}
+
+	public String getDurationMovie() {
+		return durationMovie;
 	}
 
 	/**
-	 * Gets the date of the movie show 
-	 * @return, date, Date, this is the date of the
-	 * movie show
+	 * Sets the duration of the movie as a String
+	 * 
+	 * @param durationMovie
 	 */
-	public Date getDate() {
+	public void setDurationMovie(String durationMovie) {
+		this.durationMovie = durationMovie;
+	}
+
+	/**
+	 * Gets
+	 * 
+	 * @return
+	 */
+	public String getMovieName() {
+		return movieName;
+	}
+
+	public void setMovieName(String movieName) {
+		this.movieName = movieName;
+	}
+
+	public String getTimeString() {
+		return timeString;
+	}
+
+	public void setTimeString(String timeString) {
+		this.timeString = timeString;
+	}
+
+	/**
+	 * Gets the type of the room where the movie show will take place
+	 * 
+	 * @return type, RoomType, type of the room
+	 */
+	public RoomType getType() {
+		return type;
+	}
+
+	/**
+	 * Gets the String of the type of room where the movie show will take place
+	 * 
+	 * @return type, String, string of the type of room
+	 */
+	public String getTypeString() {
+		return "" + type;
+	}
+
+	/**
+	 * Sets the type of the room where the movie show will take place
+	 * 
+	 * @param type, RoomType, type of the room
+	 */
+	public void setType(RoomType type) {
+		this.type = type;
+	}
+
+	/**
+	 * Gets the date of the movie show @return, date, LocalDate, this is the date of
+	 * the movie show
+	 */
+	public LocalDate getDate() {
 		return date;
 	}
 
 	/**
-	 * Sets the date of the movie show @param, date, Date, this is the date of the
-	 * movie show
+	 * Sets the date of the movie show @param, date, LocalDate, this is the date of
+	 * the movie show
 	 */
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
@@ -73,7 +170,7 @@ public class MovieShow {
 	 * @return customers, ArrayList(Customer), this is the array list of the
 	 *         customers
 	 */
-	public ArrayList<Customer> getCustomers() {
+	public Customer[][] getCustomers() {
 		return customers;
 	}
 
@@ -83,7 +180,7 @@ public class MovieShow {
 	 * @param customers, ArrayList(Customer), this is the array list of the
 	 *                   customers
 	 */
-	public void setCustomers(ArrayList<Customer> customers) {
+	public void setCustomers(Customer[][] customers) {
 		this.customers = customers;
 	}
 
@@ -106,21 +203,29 @@ public class MovieShow {
 	}
 
 	/**
-	 * Gets the room where the show takes place
+	 * This method gets the duration of the Movie show
 	 * 
-	 * @return room, Room, this is the room where the show takes place
+	 * @return movie.getDuration()
 	 */
-	public Room getRoom() {
-		return room;
+	public Date getMovieShowDuration() {
+		return movie.getDuration();
 	}
 
 	/**
-	 * Sets the room where the show takes place
+	 * This method adds a new customer into a specific position in the matrix
 	 * 
-	 * @param room, Room, this is the room where the show takes place
+	 * @param position, int [], this is an array with the position of the customer,
+	 *                  position[0] will be the row, position[1] will be the column
+	 * @param customer, Customer, new customer to add into the matrix
 	 */
-	public void setRoom(Room room) {
-		this.room = room;
+	public void addCustomer(int [] position, Customer customer) {
+		this.customers[position[0]][position[1]] = customer;
 	}
-
+	
+	/**
+	 * This method gets a String with the basic information about a movie show
+	 */
+	public String toString() {
+		return "Date of the show: " + date + " Time of the show: " + time + " Movie: " + movie.getName();
+	}
 }

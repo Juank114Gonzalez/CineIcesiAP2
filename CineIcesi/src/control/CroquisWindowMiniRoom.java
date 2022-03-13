@@ -3,12 +3,7 @@ package control;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 
 public class CroquisWindowMiniRoom implements Initializable {
 
@@ -17,7 +12,5 @@ public class CroquisWindowMiniRoom implements Initializable {
 		// TODO Auto-generated method stub
 		
 	}
-
 	
-
 }
