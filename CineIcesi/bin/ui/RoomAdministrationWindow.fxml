@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.RoomAdministrationWindow">
+   <children>
+      <ImageView fx:id="bgIMG" fitHeight="720.0" fitWidth="1280.0" layoutX="-3.0">
+         <image>
+            <Image url="@../../resource/Fondo.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="720.0" fitWidth="1286.0" layoutX="-3.0" opacity="0.5">
+         <image>
+            <Image url="@../../resource/blackBG.png" />
+         </image>
+      </ImageView>
+      <SplitPane layoutX="261.0" layoutY="228.0" orientation="VERTICAL" prefHeight="264.0" prefWidth="261.0" style="-fx-background-color: #3E5C76; -fx-background-radius: 25;">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="274.0" prefWidth="269.0">
+               <children>
+                  <Label alignment="CENTER" layoutY="211.0" prefHeight="51.0" prefWidth="258.0" text="SALA GRANDE" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="cineIMG" fitHeight="173.0" fitWidth="200.0" layoutX="37.0" layoutY="14.0">
+                     <image>
+                        <Image url="@../../resource/CinemaIcon.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="bigRoomBTN" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#openNormalRoomWindow" opacity="0.0" prefHeight="262.0" prefWidth="261.0" style="-fx-background-color: #009d60;" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+      <SplitPane layoutX="733.0" layoutY="228.0" orientation="VERTICAL" prefHeight="264.0" prefWidth="261.0" style="-fx-background-color: #3E5C76; -fx-background-radius: 25;">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="274.0" prefWidth="269.0">
+               <children>
+                  <Label alignment="CENTER" layoutY="211.0" prefHeight="51.0" prefWidth="258.0" text="SALA PEQUEÑA" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="cineIMG1" fitHeight="173.0" fitWidth="200.0" layoutX="37.0" layoutY="14.0">
+                     <image>
+                        <Image url="@../../resource/CinemaIcon.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="miniRoomBTN" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#openMiniRoomWindow" opacity="0.0" prefHeight="262.0" prefWidth="261.0" style="-fx-background-color: #009d60;" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+      <ImageView fx:id="back_IMG" fitHeight="30.0" fitWidth="30.0" layoutX="47.0" layoutY="43.0">
+         <image>
+            <Image url="@../../resource/Go_Back.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="back_BTN" layoutX="47.0" layoutY="43.0" minWidth="30.0" mnemonicParsing="false" onAction="#goBack" opacity="0.0" prefHeight="30.0" prefWidth="30.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>
