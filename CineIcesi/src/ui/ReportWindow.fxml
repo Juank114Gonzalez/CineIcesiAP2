@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainAP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="274.0" prefWidth="432.0" style="-fx-background-color: #D1A5F5;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.ReportWindow">
+   <children>
+      <ImageView fx:id="bgIMG" fitHeight="274.0" fitWidth="432.0" layoutY="1.0">
+         <image>
+            <Image url="@../../resource/Fondo.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="icesiBGIMG" fitHeight="274.0" fitWidth="432.0" opacity="0.5">
+         <image>
+            <Image url="@../../resource/blackBG.png" />
+         </image>
+      </ImageView>
+      <TextArea fx:id="reportTA" editable="false" layoutX="38.0" layoutY="81.0" prefHeight="133.0" prefWidth="357.0" />
+      <Label layoutX="157.0" layoutY="14.0" text="REPORTE" textFill="WHITE">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Button fx:id="closeReportBTN" layoutX="153.0" layoutY="225.0" mnemonicParsing="false" onAction="#closeReport" style="-fx-background-color: #FF8300;" text="Cerrar Reporte" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>
